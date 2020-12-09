@@ -1,0 +1,36 @@
+{
+  "name": "deno-importmap",
+  "version": "0.1.0",
+  "description": "Resolve specifiers with import maps.",
+  "main": "mod.cjs",
+  "type": "commonjs",
+  "module": "mod.mjs",
+  "exports": {
+    ".": {
+      "require": "./mod.cjs",
+      "default": "./mod.mjs"
+    }
+  },
+  "scripts": {
+    "test": "node run-tests.mjs",
+    "build": "esbuild mod.ts > mod.mjs && esbuild mod.ts --format=cjs > mod.cjs",
+    "types": "tsc ./mod.ts --declaration --emitDeclarationOnly --out mod.js --module amd --target es2015"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dalcib/deno-importmap.git"
+  },
+  "keywords": [],
+  "author": "Dalci de Jesus Bagolin <dalci.b+npm@gmail.com> (https://github.org/dalcib)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dalcib/deno-importmap/issues"
+  },
+  "homepage": "https://github.com/dalcib/deno-importmap#readme",
+  "dependencies": {
+    "@types/node": "^14.14.11"
+  },
+  "devDependencies": {
+    "esbuild": "^0.8.21"
+  }
+}

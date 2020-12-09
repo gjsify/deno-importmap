@@ -1,12 +1,14 @@
 # ImportMap
 
-Resolve specifiers with import maps.
+Resolve import specifiers with [import-maps](https://github.com/WICG/import-maps).
+
+This is a port of the Deno module [importmap](https://deno.land/x/importmap@0.1.4).
 
 ## Examples
 
 ### Imports
 ```ts
-import { resolve } from "https://deno.land/x/importmap/mod.ts"
+import { resolve } from "deno-importmap"
 
 const specifier = "foo/mod.ts"
 const importMap = {
@@ -19,7 +21,7 @@ resolve(specifier, importMap) // returns "bar/mod.ts"
 
 ### URLs
 ```ts
-import { resolve } from "https://deno.land/x/importmap/mod.ts"
+import { resolve } from "deno-importmap"
 
 const specifier = "path/mod.ts"
 const importMap = {
@@ -33,7 +35,7 @@ resolve(specifier, importMap) // returns "https://deno.land/std/path/mod.ts"
 ### Scopes
 
 ```ts
-import { resolve } from "https://deno.land/x/importmap/mod.ts"
+import { resolve } from "deno-importmap"
 
 const specifier = "path/mod.ts"
  const importMap = {
