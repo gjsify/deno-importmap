@@ -1,6 +1,6 @@
 {
   "name": "deno-importmap",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "description": "Resolve specifiers with import maps.",
   "main": "mod.cjs",
   "type": "commonjs",
@@ -20,13 +20,19 @@
     "type": "git",
     "url": "git+https://github.com/dalcib/deno-importmap.git"
   },
-  "keywords": [],
   "author": "Dalci de Jesus Bagolin <dalci.b+npm@gmail.com> (https://github.org/dalcib)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dalcib/deno-importmap/issues"
   },
   "homepage": "https://github.com/dalcib/deno-importmap#readme",
+  "keywords": [
+    "importmap",
+    "importmaps",
+    "import-map",
+    "import-maps",
+    "deno"
+  ],
   "dependencies": {
     "@types/node": "^14.14.11"
   },

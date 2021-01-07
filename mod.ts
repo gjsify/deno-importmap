@@ -1,10 +1,10 @@
 import { posix, join, dirname } from 'path'
 
-interface SpecifierMap {
+export interface SpecifierMap {
   [specifier: string]: string
 }
 
-interface Scopes {
+export interface Scopes {
   [url: string]: SpecifierMap
 }
 
@@ -30,7 +30,6 @@ function createAsURL(specifier: string, baseURL?: string): string | null {
       return specifier
     }
   }
-  // return null
 }
 
 function resolveImportMatch(normalizedSpecifier: string, specifierMap: SpecifierMap) {
@@ -52,7 +51,17 @@ function resolveImportMatch(normalizedSpecifier: string, specifierMap: Specifier
   return null
 }
 
-function resolveModuleSpecifier(
+/**
+ * resolves specifier with import map.
+ * ```ts
+ * import { resolve } from "https://deno.land/x/importmap/mod.ts"
+ *
+ * const specifier = "foo/mod.ts"
+ * const importMap = { imports: { "foo/": "bar/" } }
+ * const resolvedSpecifier = resolve(specifier, importMap) // returns "bar/mod.ts"
+ * ```
+ */
+export function resolve(
   specifier: string,
   { imports = {}, scopes = {} }: ImportMap,
   baseURL?: string
@@ -73,27 +82,5 @@ function resolveModuleSpecifier(
   if (topLevelImportsMatch) return topLevelImportsMatch
   if (asURL) return asURL.toString()
 
-  // console.table({
-  //   specifier,
-  //   baseURL,
-  //   asURL,
-  //   normalizedSpecifier,
-  //   topLevelImportsMatch,
-  // });
-
   throw Error(`specifier was a bare specifier, but was not remapped to anything by importMap.`)
-}
-
-/**
- * resolves specifier with import map.
- * ```ts
- * import { resolve } from "deno-importmap"
- *
- * const specifier = "foo/mod.ts"
- * const importMap = { imports: { "foo/": "bar/" } }
- * const resolvedSpecifier = resolve(specifier, importMap) // returns "bar/mod.ts"
- * ```
- */
-export function resolve(specifier: string, importMap: ImportMap, baseURL?: string) {
-  return resolveModuleSpecifier(specifier, importMap, baseURL)
 }

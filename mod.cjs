@@ -61,7 +61,7 @@ function resolveImportMatch(normalizedSpecifier, specifierMap) {
   }
   return null;
 }
-function resolveModuleSpecifier(specifier, {imports = {}, scopes = {}}, baseURL) {
+function resolve(specifier, {imports = {}, scopes = {}}, baseURL) {
   const baseURLString = baseURL;
   const asURL = createAsURL(specifier, baseURL);
   const normalizedSpecifier = asURL?.toString() || specifier;
@@ -78,7 +78,4 @@ function resolveModuleSpecifier(specifier, {imports = {}, scopes = {}}, baseURL)
   if (asURL)
     return asURL.toString();
   throw Error(`specifier was a bare specifier, but was not remapped to anything by importMap.`);
-}
-function resolve(specifier, importMap, baseURL) {
-  return resolveModuleSpecifier(specifier, importMap, baseURL);
 }

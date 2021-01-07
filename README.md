@@ -2,7 +2,7 @@
 
 Resolve import specifiers with [import-maps](https://github.com/WICG/import-maps).
 
-This is a port of the Deno module [importmap](https://deno.land/x/importmap@0.1.4).
+This is a port of the Deno module [importmap](https://deno.land/x/importmap@0.1.4) to Nodejs.
 
 ## Examples
 
