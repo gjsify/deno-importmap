@@ -1,9 +1,10 @@
 {
   "name": "deno-importmap",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Resolve specifiers with import maps.",
   "main": "mod.cjs",
   "type": "commonjs",
+  "typings": "mod.d.ts",
   "module": "mod.mjs",
   "exports": {
     ".": {
