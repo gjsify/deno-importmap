@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "outDir": "lib",
+    "declarationDir": "lib",
+    "declaration": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
+  },
+  "files": ["mod.ts"]
+}

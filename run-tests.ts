@@ -2,15 +2,15 @@ import { readdirSync } from 'fs'
 import { types } from 'util'
 import { resolve } from 'path'
 
-const regex = /__tests__|(\.|_)(test|spec).(j)sx?$|test\..?.s/m
+const regex = /(test|spec).(m|c)?(j)sx?$/m
 const arg = process.argv.slice(2)[0]
 const dir = resolve(process.cwd(), arg ? arg : '')
 console.log('Running tests in', dir)
 const files = readdirSync(dir).filter((file) => regex.test(file))
-const tests = []
+const tests: {name: string; fn: () => Promise<any>}[] = []
 
 globalThis.Deno = {}
-globalThis.Deno.test = function test(name, fn) {
+globalThis.Deno.test = function test({name, fn}: {name: string, fn: () => Promise<any>}) {
   tests.push({ name, fn })
 }
 
@@ -38,4 +38,9 @@ async function run() {
   })
 }
 
-run()
+try {
+  run()
+} catch (error) {
+  console.error(error);
+}
+

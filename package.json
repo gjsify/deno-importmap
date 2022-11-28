@@ -1,21 +1,25 @@
 {
   "name": "deno-importmap",
-  "version": "0.1.6",
+  "version": "0.2.1",
   "description": "Resolve specifiers with import maps.",
-  "main": "mod.cjs",
+  "main": "lib/mod.cjs",
+  "module": "lib/mod.mjs",
+  "typings": "lib/mod.d.ts",
   "type": "commonjs",
-  "typings": "mod.d.ts",
-  "module": "mod.mjs",
   "exports": {
     ".": {
-      "require": "./mod.cjs",
-      "default": "./mod.mjs"
+      "require": "./lib/mod.cjs",
+      "default": "./lib/mod.mjs"
     }
   },
   "scripts": {
     "test": "node run-tests.mjs",
-    "build": "esbuild mod.ts > mod.mjs && esbuild mod.ts --format=cjs > mod.cjs",
-    "types": "tsc ./mod.ts --declaration --emitDeclarationOnly --out mod.js --module amd --target es2015"
+    "build": "yarn run build:js && yarn run build:types",
+    "build:js": "node esbuild.mjs",
+    "build:types": "tsc --emitDeclarationOnly || exit 0",
+    "types": "tsc ./mod.ts --declaration --emitDeclarationOnly --out mod.js --module amd --target es2015",
+    "git:upstream:init": "git remote add upstream https://github.com/timreichen/importmap.git || exit 0",
+    "git:upstream:merge": "yarn git:upstream:init && git fetch upstream && git merge upstream/master"
   },
   "repository": {
     "type": "git",
@@ -35,9 +39,10 @@
     "deno"
   ],
   "dependencies": {
-    "@types/node": "^14.14.11"
+    "@types/node": "^18.11.9"
   },
   "devDependencies": {
-    "esbuild": "^0.8.21"
+    "esbuild": "^0.15.16",
+    "typescript": "^4.9.3"
   }
 }
